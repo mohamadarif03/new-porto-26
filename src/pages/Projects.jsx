@@ -1,0 +1,204 @@
+import { useState, useEffect } from 'react';
+
+function Projects() {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [animateIn, setAnimateIn] = useState(false);
+
+  const categories = ['All', 'Web Development', 'Data Science'];
+
+  const projects = [
+    {
+      title: 'CobyLearnAI',
+      category: 'Web Development',
+      type: 'WEBSITE',
+      image: '/projects/cobyLearn.png',
+      description: 'Solving information overload for students by leveraging Gemini AI to summarize complex materials instantly. The platform integrates seamlessly with student workflows.',
+      techStack: ['React', 'Gemini AI', 'Tailwind CSS', 'Node.js'],
+      year: '2025',
+      role: 'Full-Stack Developer',
+      highlights: ['AI-powered summarization', 'Real-time processing', 'Student-centric UX'],
+    },
+    {
+      title: 'Sistem Informasi Pembina Jasa Konstruksi',
+      category: 'Web Development',
+      type: 'WEB PLATFORM',
+      image: '/projects/sipjaki.png',
+      description: 'Platform informasi terpadu untuk pembina jasa konstruksi nasional, provinsi dan kabupaten/kota guna meningkatkan transparansi dan kemudahan akses.',
+      techStack: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
+      year: '2024',
+      role: 'Backend Developer',
+      highlights: ['Government-scale platform', 'Multi-level access', 'Data transparency'],
+    },
+    {
+      title: 'Squad Hub',
+      category: 'Web Development',
+      type: 'MOBILE APP',
+      image: '/projects/squadhub.png',
+      description: 'Aplikasi fintech modern dengan fitur pembayaran digital, manajemen keuangan, serta integrasi e-wallet yang praktis dan aman.',
+      techStack: ['React Native', 'Firebase', 'REST API'],
+      year: '2024',
+      role: 'Frontend Developer',
+      highlights: ['Digital payments', 'Financial management', 'E-wallet integration'],
+    },
+    {
+      title: 'Kejar Taff',
+      category: 'Data Science',
+      type: 'DASHBOARD',
+      image: '/projects/kejarTaf.png',
+      description: 'Dashboard manajemen interaktif dengan visualisasi distribusi area risiko dan analisis data real-time untuk pengambilan keputusan.',
+      techStack: ['Python', 'Pandas', 'Chart.js', 'Flask'],
+      year: '2025',
+      role: 'Data Analyst',
+      highlights: ['Risk area mapping', 'Real-time analytics', 'Decision support'],
+    },
+    {
+      title: 'Get Skill',
+      category: 'Web Development',
+      type: 'E-LEARNING',
+      image: '/projects/get-skill.png',
+      description: 'Platform edukasi online interaktif yang menghubungkan mentor dengan siswa untuk pengembangan skill di era digital.',
+      techStack: ['Laravel', 'Vue.js', 'MySQL', 'Tailwind CSS'],
+      year: '2024',
+      role: 'Full-Stack Developer',
+      highlights: ['Mentor-student matching', 'Interactive courses', 'Progress tracking'],
+    },
+    {
+      title: 'Dolfin Brain',
+      category: 'Data Science',
+      type: 'AI PLATFORM',
+      image: '/projects/dolfinBrain.png',
+      description: 'Platform analitik canggih bertenaga kecerdasan buatan untuk pemrosesan bahasa alami (NLP) dan prediksi tren data secara instan.',
+      techStack: ['Python', 'TensorFlow', 'NLP', 'Scikit-learn'],
+      year: '2025',
+      role: 'ML Engineer',
+      highlights: ['NLP processing', 'Trend prediction', 'AI-powered analytics'],
+    },
+  ];
+
+  const filteredProjects = activeFilter === 'All'
+    ? projects
+    : projects.filter(p => p.category === activeFilter);
+
+  const webDevCount = projects.filter(p => p.category === 'Web Development').length;
+  const dsCount = projects.filter(p => p.category === 'Data Science').length;
+
+  useEffect(() => {
+    setAnimateIn(false);
+    const timer = setTimeout(() => setAnimateIn(true), 50);
+    return () => clearTimeout(timer);
+  }, [activeFilter]);
+
+  return (
+    <>
+      {/* ── HERO BANNER ── */}
+      <section className="proj-hero">
+        <div className="proj-hero-inner">
+          <span className="proj-hero-label">/ Portfolio</span>
+          <h1 className="proj-hero-title">
+            My <span className="proj-hero-accent">Projects</span>
+          </h1>
+          <p className="proj-hero-desc">
+            A curated collection of projects spanning web development and data science — 
+            each crafted with purpose, precision, and a passion for solving real-world problems.
+          </p>
+
+         
+        </div>
+      </section>
+
+      {/* ── FILTER & PROJECTS GRID ── */}
+      <section className="proj-content">
+        <div className="proj-content-inner">
+
+          {/* Filter Tabs */}
+          <div className="proj-filter-bar">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                className={`proj-filter-btn ${activeFilter === cat ? 'active' : ''}`}
+                onClick={() => setActiveFilter(cat)}
+              >
+                {cat === 'All' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                )}
+                {cat === 'Web Development' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                )}
+                {cat === 'Data Science' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                )}
+                <span>{cat}</span>
+                <span className="proj-filter-count">
+                  {cat === 'All' ? projects.length : projects.filter(p => p.category === cat).length}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Projects Grid */}
+          <div className={`proj-grid ${animateIn ? 'animate-in' : ''}`}>
+            {filteredProjects.map((project, index) => (
+              <div
+                className={`proj-card ${hoveredProject === index ? 'hovered' : ''}`}
+                key={`${activeFilter}-${index}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onMouseEnter={() => setHoveredProject(index)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                {/* Image area */}
+                <div className="proj-card-img-wrap">
+                  <img src={project.image} alt={project.title} className="proj-card-img" />
+                  <div className="proj-card-img-overlay">
+                    <span className="proj-card-type-badge">{project.type}</span>
+                    <span className="proj-card-year-badge">{project.year}</span>
+                  </div>
+                </div>
+
+                {/* Content area */}
+                <div className="proj-card-body">
+                  <div className="proj-card-meta">
+                    <span className={`proj-card-category ${project.category === 'Data Science' ? 'ds' : 'wd'}`}>
+                      {project.category}
+                    </span>
+                    <span className="proj-card-role">{project.role}</span>
+                  </div>
+
+                  <h3 className="proj-card-title">{project.title}</h3>
+                  <p className="proj-card-desc">{project.description}</p>
+
+                  {/* Highlights */}
+                  <div className="proj-card-highlights">
+                    {project.highlights.map((hl, i) => (
+                      <span key={i} className="proj-highlight-chip">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        {hl}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="proj-card-tech">
+                    {project.techStack.map((tech, i) => (
+                      <span key={i} className="proj-tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Empty state */}
+          {filteredProjects.length === 0 && (
+            <div className="proj-empty">
+              <p>No projects found in this category yet.</p>
+            </div>
+          )}
+
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Projects;
