@@ -1,7 +1,48 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const projectSectionRef = useRef(null);
+  const projectTrackRef = useRef(null);
+
+  const projects = [
+    {
+      type: 'WEBSITE',
+      title: 'CobyLearnAI',
+      description: 'Solving information overload for students by leveraging Gemini AI to summarize complex materials instantly. The platform integrates seamlessly with student workflows.',
+      image: '/projects/cobyLearn.png',
+    },
+    {
+      type: 'WEB PLATFORM',
+      title: 'Sistem Informasi Pembina Jasa Konstruksi',
+      description: 'Platform informasi terpadu untuk pembina jasa konstruksi nasional, provinsi dan kabupaten/kota guna meningkatkan transparansi dan kemudahan akses.',
+      image: '/projects/sipjaki.png',
+    },
+    {
+      type: 'MOBILE APP',
+      title: 'Squad Hub',
+      description: 'Aplikasi fintech modern dengan fitur pembayaran digital, manajemen keuangan, serta integrasi e-wallet yang praktis dan aman.',
+      image: '/projects/squadhub.png',
+    },
+    {
+      type: 'DASHBOARD',
+      title: 'Kejar Taff',
+      description: 'Dashboard manajemen interaktif dengan visualisasi distribusi area risiko dan analisis data real-time untuk pengambilan keputusan.',
+      image: '/projects/kejarTaf.png',
+    },
+    {
+      type: 'E-LEARNING',
+      title: 'Get Skill',
+      description: 'Platform edukasi online interaktif yang menghubungkan mentor dengan siswa untuk pengembangan skill di era digital.',
+      image: '/projects/get-skill.png',
+    },
+    {
+      type: 'AI PLATFORM',
+      title: 'Dolfin Brain',
+      description: 'Platform analitik canggih bertenaga kecerdasan buatan untuk pemrosesan bahasa alami (NLP) dan prediksi tren data secara instan.',
+      image: '/projects/dolfinBrain.png',
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -9,6 +50,24 @@ function App() {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+
+      // Horizontal scroll effect for project section
+      const section = projectSectionRef.current;
+      const track = projectTrackRef.current;
+      if (section && track) {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollableDistance = sectionHeight - windowHeight;
+
+        if (scrollableDistance > 0) {
+          const scrollProgress = (window.scrollY - sectionTop) / scrollableDistance;
+          const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+          const maxTranslate = track.scrollWidth - window.innerWidth + 80;
+          track.style.transform = `translateX(-${clampedProgress * maxTranslate}px)`;
+        }
       }
     };
 
@@ -144,6 +203,27 @@ function App() {
                           <div className="journey-date">2023 &rarr; 2024</div>
                       </div>
                   </div>
+              </div>
+          </div>
+      </section>
+
+      {/* Projects Section - Horizontal Scroll */}
+      <section className="projects-section" id="projects" ref={projectSectionRef}>
+          <div className="projects-sticky">
+              <div className="projects-header">
+                  <span className="projects-subtitle">/ Selected Work</span>
+                  <h2 className="projects-title">My <span className="light-text">Projects</span></h2>
+              </div>
+              <div className="projects-track" ref={projectTrackRef}>
+                  {projects.map((project, index) => (
+                      <div className="project-card" key={index} style={{backgroundImage: `url(${project.image})`}}>
+                          <div className="project-overlay">
+                              <span className="project-type">{project.type}</span>
+                              <h3 className="project-name">{project.title}</h3>
+                              <p className="project-desc">{project.description}</p>
+                          </div>
+                      </div>
+                  ))}
               </div>
           </div>
       </section>

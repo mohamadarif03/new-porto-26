@@ -458,6 +458,146 @@ body, html {
     color: #0EA5E9;
 }
 
+/* Projects Section - Horizontal Scroll */
+.projects-section {
+    height: 300vh; /* Ruang scroll yang cukup untuk efek horizontal */
+    position: relative;
+}
+
+.projects-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 40px;
+}
+
+.projects-header {
+    margin-bottom: 40px;
+    padding-left: 20px;
+}
+
+.projects-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #0EA5E9;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.projects-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #082f49;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.projects-title .light-text {
+    color: rgba(14, 165, 233, 0.6);
+}
+
+.projects-track {
+    display: flex;
+    gap: 30px;
+    will-change: transform;
+    padding: 0 20px;
+}
+
+.project-card {
+    min-width: 700px;
+    max-width: 700px;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.02);
+}
+
+/* Overlay gelap di atas foto */
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 36px;
+    transition: background 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+/* Tipe / Kategori — tersembunyi sampai hover */
+.project-type {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0EA5E9;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover .project-type {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Nama Project — selalu tampil */
+.project-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    line-height: 1.15;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-name {
+    transform: translateY(-4px);
+}
+
+/* Deskripsi — tersembunyi sampai hover */
+.project-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s, max-height 0.4s ease;
+}
+
+.project-card:hover .project-desc {
+    opacity: 1;
+    max-height: 100px;
+    transform: translateY(0);
+}
+
 /* Tampilan Responsive untuk HP */
 @media (max-width: 768px) {
     .greeting { font-size: 2.2rem; }
@@ -503,5 +643,26 @@ body, html {
     }
     .journey-title {
         font-size: 2.8rem;
+    }
+
+    /* Responsive Projects untuk HP */
+    .projects-section {
+        height: auto;
+    }
+    .projects-sticky {
+        position: relative;
+        height: auto;
+        padding: 60px 20px;
+    }
+    .projects-track {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .project-card {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .projects-title {
+        font-size: 2.5rem;
     }
 }
