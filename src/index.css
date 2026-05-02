@@ -3,12 +3,18 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Outfit', sans-serif;
+    background-color: #ffffff;
+    /* Pola Kotak-kotak (Grid Pattern) */
+    background-image: 
+        linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
 }
 
 .hero-section {
     /* Gradient glow yang sangat smooth, tidak ada garis kaku */
-    background-color: #ffffff;
-    background-image: radial-gradient(ellipse 100% 60% at 50% 50%, #0EA5E9 0%, #0EA5E9 15%, #ffffff 80%);
+    background-color: transparent;
+    background-image: radial-gradient(ellipse 130% 120% at 50% 60%, rgba(14, 165, 233, 0.6) 0%, rgba(14, 165, 233, 0.25) 40%, rgba(255, 255, 255, 0) 85%);
     
     /* Mengatur tata letak agar semua konten berada di tengah */
     display: flex;
@@ -16,7 +22,7 @@ body, html {
     align-items: center;
     justify-content: flex-end; /* Agar foto bisa menempel di bawah / tidak memotong teks ke atas */
     text-align: center;
-    padding-top: 60px; /* Memberikan ruang aman untuk teks di atas */
+    padding-top: 50px; /* Memberikan ruang aman untuk teks di atas */
     min-height: 100vh;
     position: relative;
     overflow: hidden; /* Menjaga agar elemen absolut tidak keluar dari hero */
@@ -45,10 +51,10 @@ body, html {
 .role {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 4.5rem; /* 72px */
+    font-size: 2.5rem; /* Diperkecil dari sebelumnya */
     font-weight: 400; /* Lebih tipis (Normal) */
     color: #1a1a1a;
-    margin: -10px 0 0 0; /* Tarik sedikit ke atas agar lebih rapat ke "Hi I'm Arif" */
+    margin: -20px 0 0 0; /* Tarik sedikit ke atas agar lebih rapat ke "Hi I'm Arif" */
     letter-spacing: -0.02em;
 }
 
@@ -60,7 +66,7 @@ body, html {
     /* Agar menumpuk dan posisinya di belakang teks */
     z-index: 10;
     position: relative; 
-    margin-top: -100px; /* Ditarik ke atas agar tumpang tindih dengan teks */
+    margin-top: -40px; /* Tumpang tindih dibuat lebih sedikit (sebelumnya -100px) */
 }
 
 .description {
@@ -219,7 +225,7 @@ body, html {
 /* Journey Section Styling */
 .journey-section {
     padding: 100px 5%;
-    background-color: #ffffff;
+    background-color: transparent;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -233,7 +239,7 @@ body, html {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 1.2rem;
-    color: #666;
+    color: #0EA5E9;
     margin-bottom: 15px;
     display: block;
 }
@@ -242,13 +248,13 @@ body, html {
     font-family: 'Outfit', sans-serif;
     font-size: 4.5rem;
     font-weight: 400;
-    color: #1a1a1a;
+    color: #082f49;
     margin: 0;
     letter-spacing: -0.04em;
 }
 
 .journey-title .light-text {
-    color: #a0a0a0;
+    color: rgba(14, 165, 233, 0.6);
 }
 
 .journey-container {
@@ -275,6 +281,11 @@ body, html {
     transform: rotate(0deg);
 }
 
+.journey-image-wrapper:hover .journey-image {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
 .journey-image {
     width: 100%;
     height: auto;
@@ -282,6 +293,7 @@ body, html {
     filter: grayscale(100%);
     opacity: 0.9;
     transform: scale(1.05); /* Slight scale to avoid borders when rotated */
+    transition: filter 0.4s ease, opacity 0.4s ease;
 }
 
 .journey-social {
@@ -303,7 +315,7 @@ body, html {
 .social-icons svg {
     width: 22px;
     height: 22px;
-    fill: #1a1a1a;
+    fill: #082f49;
     transition: fill 0.3s ease, transform 0.3s ease;
 }
 
@@ -320,13 +332,13 @@ body, html {
 
 .journey-name strong {
     font-size: 1.1rem;
-    color: #1a1a1a;
+    color: #082f49;
     font-weight: 600;
 }
 
 .journey-name span {
     font-size: 0.9rem;
-    color: #888;
+    color: #0EA5E9;
 }
 
 .journey-right {
@@ -336,7 +348,7 @@ body, html {
 .journey-description {
     font-family: 'Outfit', sans-serif;
     font-size: 1.1rem;
-    color: #444;
+    color: #082f49;
     line-height: 1.6;
     margin-top: 0;
     margin-bottom: 50px;
@@ -352,35 +364,35 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 24px 0;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.2);
     font-family: 'Outfit', sans-serif;
     transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
 .journey-row:hover {
     padding-left: 10px;
-    background-color: #fafafa;
+    background-color: rgba(14, 165, 233, 0.05);
 }
 
 .journey-row:first-child {
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 .journey-role {
     flex: 1.2;
     font-weight: 500;
-    color: #1a1a1a;
+    color: #082f49;
     font-size: 1.05rem;
 }
 
 .journey-company {
     flex: 1;
-    color: #888;
+    color: #0EA5E9;
     font-size: 1rem;
 }
 
 .journey-date {
-    color: #1a1a1a;
+    color: #082f49;
     font-weight: 500;
     font-size: 1rem;
     text-align: right;
@@ -449,7 +461,7 @@ body, html {
 /* Tampilan Responsive untuk HP */
 @media (max-width: 768px) {
     .greeting { font-size: 2.2rem; }
-    .role { font-size: 3rem; margin-top: -5px; }
+    .role { font-size: 2.2rem; margin-top: -5px; }
     .profile-image { max-width: 80%; }
     
     /* Ubah posisi absolute menjadi biasa di HP agar tidak berantakan */
