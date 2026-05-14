@@ -8,7 +8,6 @@ import CertificationsPage from './pages/Certifications.jsx';
 function App() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showAllCerts, setShowAllCerts] = useState(false);
   const projectSectionRef = useRef(null);
   const projectTrackRef = useRef(null);
 
@@ -134,7 +133,7 @@ function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/certifications" element={<CertificationsPage />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={<HomePage scrolled={isScrolled} projectSectionRef={projectSectionRef} projectTrackRef={projectTrackRef} certificates={certificates} projects={projects} showAllCerts={showAllCerts} setShowAllCerts={setShowAllCerts} />} />
+        <Route path="/*" element={<HomePage scrolled={isScrolled} projectSectionRef={projectSectionRef} projectTrackRef={projectTrackRef} certificates={certificates} projects={projects} />} />
       </Routes>
 
       <div className="contact-footer" style={{ padding: '20px', textAlign: 'center', backgroundColor: 'transparent', color: '#64748b', marginTop: 'auto' }}>
@@ -144,7 +143,7 @@ function App() {
   );
 }
 
-function HomePage({ projectSectionRef, projectTrackRef, certificates, projects, showAllCerts, setShowAllCerts }) {
+function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }) {
   return (
     <>
 
@@ -324,36 +323,13 @@ function HomePage({ projectSectionRef, projectTrackRef, certificates, projects, 
               ))}
           </div>
           <div className="certs-action">
-              <button className="btn-view-all" onClick={() => setShowAllCerts(true)}>
+              <Link to="/certifications" className="btn-view-all" style={{ textDecoration: 'none' }}>
                   View All Certifications &rarr;
-              </button>
+              </Link>
           </div>
       </section>
 
-      {/* Modal Semua Sertifikat */}
-      {showAllCerts && (
-          <div className="certs-modal-overlay" onClick={() => setShowAllCerts(false)}>
-              <div className="certs-modal" onClick={(e) => e.stopPropagation()}>
-                  <div className="certs-modal-header">
-                      <h2>All Certifications</h2>
-                      <button className="certs-modal-close" onClick={() => setShowAllCerts(false)}>&times;</button>
-                  </div>
-                  <div className="certs-modal-grid">
-                      {certificates.map((cert, index) => (
-                          <div className="cert-card" key={index}>
-                              <div className="cert-image-wrapper">
-                                  <img src={cert.image} alt={cert.title} className="cert-image" />
-                              </div>
-                              <div className="cert-info">
-                                  <span className="cert-issuer">{cert.issuer}</span>
-                                  <h3 className="cert-name">{cert.title}</h3>
-                              </div>
-                          </div>
-                      ))}
-                  </div>
-              </div>
-          </div>
-      )}
+
 
       {/* ── CONTACT SECTION ── */}
       <section id="contact" className="contact-section">
