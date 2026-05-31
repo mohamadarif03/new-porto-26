@@ -7,6 +7,7 @@ import CertificationsPage from './pages/Certifications.jsx';
 import ProjectDetail from './pages/ProjectDetail.jsx';
 import { projects } from './data/projects.js';
 import './navbar-mobile.css';
+import './animations.css';
 
 function App() {
   const location = useLocation();
@@ -128,6 +129,33 @@ function App() {
 }
 
 function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }) {
+  useEffect(() => {
+    const selectors = [
+      '.hero-text', '.profile-image', '.hero-stats', '.description', '.btn-contact', '.social-links',
+      '.journey-header', '.journey-left', '.journey-right',
+      '.services-header', '.service-card',
+      '.project-header', '.project-card',
+      '.cert-header', '.cert-card',
+      '.contact-left', '.contact-right'
+    ];
+    
+    const elements = document.querySelectorAll(selectors.join(', '));
+    elements.forEach(el => el.style.opacity = '0'); // Hide initially before scroll
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          entry.target.style.opacity = ''; // Remove inline opacity
+          observer.unobserve(entry.target); // Only animate once
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => elements.forEach(el => observer.unobserve(el));
+  }, []);
+
   return (
     <>
 

@@ -1,6 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function About() {
+  useEffect(() => {
+    const selectors = [
+      '.about-bio', '.about-photo-wrapper', '.about-social-row',
+      '.about-journey-header', '.exp-card'
+    ];
+    
+    const elements = document.querySelectorAll(selectors.join(', '));
+    elements.forEach(el => el.style.opacity = '0');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          entry.target.style.opacity = '';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => elements.forEach(el => observer.unobserve(el));
+  }, []);
+
   const stats = [
     { number: '2+', label: 'Years Experience' },
     { number: '15+', label: 'Projects Completed' },

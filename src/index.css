@@ -11,6 +11,12 @@ body, html {
     background-size: 32px 32px;
 }
 
+/* Ensure all clickable elements show pointer cursor on hover */
+a, button, [role="button"], input[type="submit"], input[type="button"], 
+.cert-pg-card, .proj-card, .exp-card, .role-toggle, .nav-links a, .social-links a, .btn-contact {
+    cursor: pointer !important;
+}
+
 .hero-section {
     /* Gradient glow yang sangat smooth, tidak ada garis kaku */
     background-color: transparent;

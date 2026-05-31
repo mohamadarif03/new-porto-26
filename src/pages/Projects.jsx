@@ -20,7 +20,27 @@ function Projects() {
   useEffect(() => {
     setAnimateIn(false);
     const timer = setTimeout(() => setAnimateIn(true), 50);
-    return () => clearTimeout(timer);
+    
+    const selectors = ['.proj-hero-inner', '.proj-filter-bar', '.proj-card'];
+    const elements = document.querySelectorAll(selectors.join(', '));
+    elements.forEach(el => el.style.opacity = '0');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          entry.target.style.opacity = '';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+
+    return () => {
+      clearTimeout(timer);
+      elements.forEach(el => observer.unobserve(el));
+    };
   }, [activeFilter]);
 
   return (

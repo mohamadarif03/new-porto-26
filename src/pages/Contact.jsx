@@ -1,4 +1,25 @@
+import { useEffect } from 'react';
+
 function Contact() {
+  useEffect(() => {
+    const selectors = ['.contact-left', '.contact-right'];
+    const elements = document.querySelectorAll(selectors.join(', '));
+    elements.forEach(el => el.style.opacity = '0');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          entry.target.style.opacity = '';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => elements.forEach(el => observer.unobserve(el));
+  }, []);
+
   return (
     <>
       {/* ── CONTACT SECTION ── */}
