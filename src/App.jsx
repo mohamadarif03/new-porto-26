@@ -4,10 +4,14 @@ import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import ProjectsPage from './pages/Projects.jsx';
 import CertificationsPage from './pages/Certifications.jsx';
+import ProjectDetail from './pages/ProjectDetail.jsx';
+import { projects } from './data/projects.js';
+import './navbar-mobile.css';
 
 function App() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const projectSectionRef = useRef(null);
   const projectTrackRef = useRef(null);
 
@@ -44,44 +48,7 @@ function App() {
     },
   ];
 
-  const projects = [
-    {
-      type: 'WEBSITE',
-      title: 'CobyLearnAI',
-      description: 'Solving information overload for students by leveraging Gemini AI to summarize complex materials instantly. The platform integrates seamlessly with student workflows.',
-      image: '/projects/cobyLearn.png',
-    },
-    {
-      type: 'WEB PLATFORM',
-      title: 'Sistem Informasi Pembina Jasa Konstruksi',
-      description: 'Platform informasi terpadu untuk pembina jasa konstruksi nasional, provinsi dan kabupaten/kota guna meningkatkan transparansi dan kemudahan akses.',
-      image: '/projects/sipjaki.png',
-    },
-    {
-      type: 'MOBILE APP',
-      title: 'Squad Hub',
-      description: 'Aplikasi fintech modern dengan fitur pembayaran digital, manajemen keuangan, serta integrasi e-wallet yang praktis dan aman.',
-      image: '/projects/squadhub.png',
-    },
-    {
-      type: 'DASHBOARD',
-      title: 'Kejar Taff',
-      description: 'Dashboard manajemen interaktif dengan visualisasi distribusi area risiko dan analisis data real-time untuk pengambilan keputusan.',
-      image: '/projects/kejarTaf.png',
-    },
-    {
-      type: 'E-LEARNING',
-      title: 'Get Skill',
-      description: 'Platform edukasi online interaktif yang menghubungkan mentor dengan siswa untuk pengembangan skill di era digital.',
-      image: '/projects/get-skill.png',
-    },
-    {
-      type: 'AI PLATFORM',
-      title: 'Dolfin Brain',
-      description: 'Platform analitik canggih bertenaga kecerdasan buatan untuk pemrosesan bahasa alami (NLP) dan prediksi tren data secara instan.',
-      image: '/projects/dolfinBrain.png',
-    },
-  ];
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,6 +62,11 @@ function App() {
       const section = projectSectionRef.current;
       const track = projectTrackRef.current;
       if (section && track) {
+        if (window.innerWidth <= 1024) {
+          track.style.transform = 'none';
+          return;
+        }
+
         const rect = section.getBoundingClientRect();
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
@@ -118,19 +90,31 @@ function App() {
     <>
       {/* Navbar (Fixed di Atas) */}
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} id="navbar">
-          <Link to="/" className="nav-logo">Mohamad Arif</Link>
-          <ul className="nav-links">
-              <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
-              <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link></li>
-              <li><Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''}>Project</Link></li>
-              <li><Link to="/certifications" className={location.pathname === '/certifications' ? 'active' : ''}>Certifications</Link></li>
-              <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact Us</Link></li>
+          <Link to="/" className="nav-logo" onClick={() => setIsMobileMenuOpen(false)}>Mohamad Arif</Link>
+          
+          <button 
+            className={`mobile-menu-btn ${isMobileMenuOpen ? 'open' : ''}`} 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+              <li><Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>About</Link></li>
+              <li><Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Project</Link></li>
+              <li><Link to="/certifications" className={location.pathname === '/certifications' ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Certifications</Link></li>
+              <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link></li>
           </ul>
       </nav>
 
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/project/:slug" element={<ProjectDetail projects={projects} />} />
         <Route path="/certifications" element={<CertificationsPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/*" element={<HomePage scrolled={isScrolled} projectSectionRef={projectSectionRef} projectTrackRef={projectTrackRef} certificates={certificates} projects={projects} />} />
@@ -291,13 +275,13 @@ function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }
               </div>
               <div className="projects-track" ref={projectTrackRef}>
                   {projects.map((project, index) => (
-                      <div className="project-card" key={index} style={{backgroundImage: `url(${project.image})`}}>
+                      <Link to={`/project/${project.slug}`} className="project-card" key={index} style={{backgroundImage: `url(${project.image})`, display: 'block', textDecoration: 'none'}}>
                           <div className="project-overlay">
                               <span className="project-type">{project.type}</span>
                               <h3 className="project-name">{project.title}</h3>
                               <p className="project-desc">{project.description}</p>
                           </div>
-                      </div>
+                      </Link>
                   ))}
               </div>
           </div>

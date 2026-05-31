@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
+import { projects } from '../data/projects.js';
 function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -7,74 +8,7 @@ function Projects() {
 
   const categories = ['All', 'Web Development', 'Data Science'];
 
-  const projects = [
-    {
-      title: 'CobyLearnAI',
-      category: 'Web Development',
-      type: 'WEBSITE',
-      image: '/projects/cobyLearn.png',
-      description: 'Solving information overload for students by leveraging Gemini AI to summarize complex materials instantly. The platform integrates seamlessly with student workflows.',
-      techStack: ['React', 'Gemini AI', 'Tailwind CSS', 'Node.js'],
-      year: '2025',
-      role: 'Full-Stack Developer',
-      highlights: ['AI-powered summarization', 'Real-time processing', 'Student-centric UX'],
-    },
-    {
-      title: 'Sistem Informasi Pembina Jasa Konstruksi',
-      category: 'Web Development',
-      type: 'WEB PLATFORM',
-      image: '/projects/sipjaki.png',
-      description: 'Platform informasi terpadu untuk pembina jasa konstruksi nasional, provinsi dan kabupaten/kota guna meningkatkan transparansi dan kemudahan akses.',
-      techStack: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
-      year: '2024',
-      role: 'Backend Developer',
-      highlights: ['Government-scale platform', 'Multi-level access', 'Data transparency'],
-    },
-    {
-      title: 'Squad Hub',
-      category: 'Web Development',
-      type: 'MOBILE APP',
-      image: '/projects/squadhub.png',
-      description: 'Aplikasi fintech modern dengan fitur pembayaran digital, manajemen keuangan, serta integrasi e-wallet yang praktis dan aman.',
-      techStack: ['React Native', 'Firebase', 'REST API'],
-      year: '2024',
-      role: 'Frontend Developer',
-      highlights: ['Digital payments', 'Financial management', 'E-wallet integration'],
-    },
-    {
-      title: 'Kejar Taff',
-      category: 'Data Science',
-      type: 'DASHBOARD',
-      image: '/projects/kejarTaf.png',
-      description: 'Dashboard manajemen interaktif dengan visualisasi distribusi area risiko dan analisis data real-time untuk pengambilan keputusan.',
-      techStack: ['Python', 'Pandas', 'Chart.js', 'Flask'],
-      year: '2025',
-      role: 'Data Analyst',
-      highlights: ['Risk area mapping', 'Real-time analytics', 'Decision support'],
-    },
-    {
-      title: 'Get Skill',
-      category: 'Web Development',
-      type: 'E-LEARNING',
-      image: '/projects/get-skill.png',
-      description: 'Platform edukasi online interaktif yang menghubungkan mentor dengan siswa untuk pengembangan skill di era digital.',
-      techStack: ['Laravel', 'Vue.js', 'MySQL', 'Tailwind CSS'],
-      year: '2024',
-      role: 'Full-Stack Developer',
-      highlights: ['Mentor-student matching', 'Interactive courses', 'Progress tracking'],
-    },
-    {
-      title: 'Dolfin Brain',
-      category: 'Data Science',
-      type: 'AI PLATFORM',
-      image: '/projects/dolfinBrain.png',
-      description: 'Platform analitik canggih bertenaga kecerdasan buatan untuk pemrosesan bahasa alami (NLP) dan prediksi tren data secara instan.',
-      techStack: ['Python', 'TensorFlow', 'NLP', 'Scikit-learn'],
-      year: '2025',
-      role: 'ML Engineer',
-      highlights: ['NLP processing', 'Trend prediction', 'AI-powered analytics'],
-    },
-  ];
+
 
   const filteredProjects = activeFilter === 'All'
     ? projects
@@ -139,10 +73,11 @@ function Projects() {
           {/* Projects Grid */}
           <div className={`proj-grid ${animateIn ? 'animate-in' : ''}`}>
             {filteredProjects.map((project, index) => (
-              <div
+              <Link
+                to={`/project/${project.slug}`}
                 className={`proj-card ${hoveredProject === index ? 'hovered' : ''}`}
                 key={`${activeFilter}-${index}`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ animationDelay: `${index * 0.1}s`, display: 'block', textDecoration: 'none' }}
                 onMouseEnter={() => setHoveredProject(index)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -184,7 +119,7 @@ function Projects() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

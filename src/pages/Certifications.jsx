@@ -407,11 +407,7 @@ function Certifications() {
                     ))}
                   </div>
 
-                  <div className="cert-pg-card-footer">
-                    <span className="cert-pg-card-id">
-                      ID: {cert.credentialId}
-                    </span>
-                  </div>
+                  {/* Credential ID removed as requested */}
                 </div>
               </div>
             ))}
@@ -497,23 +493,7 @@ function Certifications() {
                       <strong>Date:</strong> {selectedCert.date}
                     </span>
                   </div>
-                  <div className="cert-pg-modal-meta-item">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                      <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                    <span>
-                      <strong>Credential ID:</strong>{" "}
-                      {selectedCert.credentialId}
-                    </span>
-                  </div>
+                  {/* Credential ID modal item removed */}
                   <div className="cert-pg-modal-meta-item">
                     <svg
                       width="16"

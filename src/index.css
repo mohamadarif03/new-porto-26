@@ -1022,9 +1022,6 @@ body, html {
     body {
         padding-bottom: 40px;
     }
-    .nav-links {
-        display: none; /* Sembunyikan menu di HP (bisa diganti ikon burger ke depannya) */
-    }
     .navbar, .navbar.scrolled {
         padding: 15px 20px;
     }
