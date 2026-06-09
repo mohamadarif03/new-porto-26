@@ -190,7 +190,7 @@ function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }
       </p>
 
       {/* Tombol Get in Touch di Pojok Kanan Bawah */}
-      <a href="#" className="btn-contact">
+      <a href="/Mohamad_Arif_CV_ATS.pdf" target="_blank" rel="noopener noreferrer" className="btn-contact">
           Download CV &rarr;
       </a>
     
