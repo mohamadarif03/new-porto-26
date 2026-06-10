@@ -196,9 +196,9 @@ function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }
     
       {/* Tautan Sosial di Kiri Bawah */}
       <div className="social-links">
-          <a href="#">LinkedIn</a>
-          <a href="#">GitHub</a>
-          <a href="#">Instagram</a>
+          <a href="https://www.linkedin.com/in/mohamad-arif-68402627a/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/mohamadarif03" target="_blank">GitHub</a>
+          <a href="https://www.instagram.com/mhmdarif346/" target="_blank">Instagram</a>
       </div>
       </section>
 
