@@ -4,7 +4,6 @@ import { projects } from '../data/projects.js';
 function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [animateIn, setAnimateIn] = useState(false);
 
   const categories = ['All', 'Web Development', 'Data Science'];
 
@@ -14,13 +13,7 @@ function Projects() {
     ? projects
     : projects.filter(p => p.category === activeFilter);
 
-  const webDevCount = projects.filter(p => p.category === 'Web Development').length;
-  const dsCount = projects.filter(p => p.category === 'Data Science').length;
-
   useEffect(() => {
-    setAnimateIn(false);
-    const timer = setTimeout(() => setAnimateIn(true), 50);
-    
     const selectors = ['.proj-hero-inner', '.proj-filter-bar', '.proj-card'];
     const elements = document.querySelectorAll(selectors.join(', '));
     elements.forEach(el => el.style.opacity = '0');
@@ -38,7 +31,6 @@ function Projects() {
     elements.forEach(el => observer.observe(el));
 
     return () => {
-      clearTimeout(timer);
       elements.forEach(el => observer.unobserve(el));
     };
   }, [activeFilter]);
@@ -91,7 +83,7 @@ function Projects() {
           </div>
 
           {/* Projects Grid */}
-          <div className={`proj-grid ${animateIn ? 'animate-in' : ''}`}>
+          <div className="proj-grid animate-in">
             {filteredProjects.map((project, index) => (
               <Link
                 to={`/project/${project.slug}`}
@@ -103,7 +95,7 @@ function Projects() {
               >
                 {/* Image area */}
                 <div className="proj-card-img-wrap">
-                  <img src={project.image} alt={project.title} className="proj-card-img" />
+                  <img src={project.image} alt={project.title} className="proj-card-img" width="600" height="240" loading="lazy" />
                   <div className="proj-card-img-overlay">
                     <span className="proj-card-type-badge">{project.type}</span>
                     <span className="proj-card-year-badge">{project.year}</span>
@@ -156,4 +148,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default Projects;

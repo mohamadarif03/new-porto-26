@@ -555,16 +555,20 @@ a, button, [role="button"], input[type="submit"], input[type="button"],
 .project-card {
     min-width: 700px;
     max-width: 700px;
-    aspect-ratio: 16 / 9;
     border-radius: 20px;
     overflow: hidden;
     flex-shrink: 0;
     cursor: pointer;
     position: relative;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
     transition: transform 0.4s ease;
+}
+
+.project-card-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
 }
 
 .project-card:hover {

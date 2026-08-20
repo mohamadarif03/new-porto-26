@@ -4,11 +4,11 @@ export const projects = [
     title: 'CobyLearnAI',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/cobyLearn.png',
+    image: '/projects/cobyLearn.webp',
     images: [
-      '/projects/cobyLearn.png',
-      '/projects/cobyLearn.png',
-      '/projects/cobyLearn.png'
+      '/projects/cobyLearn.webp',
+      '/projects/cobyLearn.webp',
+      '/projects/cobyLearn.webp'
     ],
     description: 'Solving information overload for students by leveraging Gemini AI to summarize complex materials instantly. The platform integrates gamification to boost study consistency and retention.',
     techStack: ['Golang', 'React', 'Gemini AI', 'REST API'],
@@ -29,11 +29,11 @@ export const projects = [
     title: 'SIPJAKI Kabupaten Pasuruan',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/sipjaki.png',
+    image: '/projects/sipjaki.webp',
     images: [
-      '/projects/sipjaki.png',
-      '/projects/sipjaki.png',
-      '/projects/sipjaki.png'
+      '/projects/sipjaki.webp',
+      '/projects/sipjaki.webp',
+      '/projects/sipjaki.webp'
     ],
     description: 'Digitized regional construction data to improve transparency and accessibility. This government portal connects businesses and stakeholders, fostering a more efficient local supply chain.',
     techStack: ['Laravel (Full-stack)', 'MySQL'],
@@ -53,11 +53,11 @@ export const projects = [
     title: 'Squad Hub',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/squadhub.png',
+    image: '/projects/squadhub.webp',
     images: [
-      '/projects/squadhub.png',
-      '/projects/squadhub.png',
-      '/projects/squadhub.png'
+      '/projects/squadhub.webp',
+      '/projects/squadhub.webp',
+      '/projects/squadhub.webp'
     ],
     description: 'Unified commerce and booking operations for a multi-service business. The ecosystem seamlessly integrates product sales, service booking, and memberships, boosting operational efficiency.',
     techStack: ['Laravel', 'MySQL', 'Xendit Payment Gateway'],
@@ -77,11 +77,11 @@ export const projects = [
     title: 'Kejar Taff',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/kejarTaf.png',
+    image: '/projects/kejarTaf.webp',
     images: [
-      '/projects/kejarTaf.png',
-      '/projects/kejarTaf.png',
-      '/projects/kejarTaf.png'
+      '/projects/kejarTaf.webp',
+      '/projects/kejarTaf.webp',
+      '/projects/kejarTaf.webp'
     ],
     description: 'Optimized field operations for leasing officers with a real-time task management system. Improved accountability and response times through transparent tracking and reporting.',
     techStack: ['Laravel (Full-stack)', 'MySQL'],
@@ -101,11 +101,11 @@ export const projects = [
     title: 'Get Skill',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/get-skill.png',
+    image: '/projects/get-skill.webp',
     images: [
-      '/projects/get-skill.png',
-      '/projects/get-skill.png',
-      '/projects/get-skill.png'
+      '/projects/get-skill.webp',
+      '/projects/get-skill.webp',
+      '/projects/get-skill.webp'
     ],
     description: 'Addressed the need for accessible digital education by creating a secure marketplace for creators. Enabled seamless transactions and role-based learning, resulting in increased creator revenue and user engagement.',
     techStack: ['Laravel', 'JavaScript', 'Tripay Payment Gateway', 'REST API'],
@@ -126,11 +126,11 @@ export const projects = [
     title: 'Dolfin Brain',
     category: 'Web Development',
     type: 'Website',
-    image: '/projects/dolfinBrain.png',
+    image: '/projects/dolfinBrain.webp',
     images: [
-      '/projects/dolfinBrain.png',
-      '/projects/dolfinBrain.png',
-      '/projects/dolfinBrain.png'
+      '/projects/dolfinBrain.webp',
+      '/projects/dolfinBrain.webp',
+      '/projects/dolfinBrain.webp'
     ],
     description: 'Streamlined CPNS exam preparation by building a dedicated LMS. The system simplifies course registration and access, providing a structured environment for thousands of aspiring civil servants.',
     techStack: ['Laravel (Full-stack)', 'MySQL', 'Tripay Payment Gateway'],

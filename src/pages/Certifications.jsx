@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 function Certifications() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedCert, setSelectedCert] = useState(null);
-  const [animateIn, setAnimateIn] = useState(false);
 
   const categories = ["All", "Course", "Achievement"];
 
@@ -12,7 +11,7 @@ function Certifications() {
       title: "Machine Learning for Beginners",
       issuer: "Dicoding",
       image:
-        "/certificate/dicoding-belajar machine learning untuk pemula-D-gNHk9Z.png",
+        "/certificate/dicoding-belajar machine learning untuk pemula-D-gNHk9Z.webp",
       category: "Course",
       date: "Jan 2025",
       credentialId: "D-gNHk9Z",
@@ -24,7 +23,7 @@ function Certifications() {
     {
       title: "Data Visualization",
       issuer: "Dicoding",
-      image: "/certificate/dicoding-belajar visualisasi data-BRYqhVab.png",
+      image: "/certificate/dicoding-belajar visualisasi data-BRYqhVab.webp",
       category: "Course",
       date: "Dec 2024",
       credentialId: "BRYqhVab",
@@ -36,8 +35,7 @@ function Certifications() {
     {
       title: "Python Programming",
       issuer: "Dicoding",
-      image:
-        "/certificate/dicoding-memulai pemrograman dengan python-DuGWBR1e.png",
+      image: "/certificate/dicoding-memulai pemrograman dengan python-DuGWBR1e.webp",
       category: "Course",
       date: "Nov 2024",
       credentialId: "DuGWBR1e",
@@ -49,7 +47,7 @@ function Certifications() {
     {
       title: "Golang Development",
       issuer: "Sanbercode",
-      image: "/certificate/golang-sanbercode-BwYqxc-J.png",
+      image: "/certificate/golang-sanbercode-BwYqxc-J.webp",
       category: "Course",
       date: "Aug 2024",
       credentialId: "BwYqxc-J",
@@ -61,7 +59,7 @@ function Certifications() {
     {
       title: "Machine Learning",
       issuer: "IBM",
-      image: "/certificate/machine-learning-ibm-DuIUTlc6.png",
+      image: "/certificate/machine-learning-ibm-DuIUTlc6.webp",
       category: "Course",
       date: "Mar 2025",
       credentialId: "DuIUTlc6",
@@ -78,7 +76,7 @@ function Certifications() {
     {
       title: "Winner 3rd Place T-Arts Competition",
       issuer: "T-Arts",
-      image: "/certificate/winner 3rd place t-arts competition-ByytJNZ-.png",
+      image: "/certificate/winner 3rd place t-arts competition-ByytJNZ-.webp",
       category: "Achievement",
       date: "Oct 2024",
       credentialId: "ByytJNZ-",
@@ -90,7 +88,7 @@ function Certifications() {
     {
       title: "Winner 1st Place ITC Competition",
       issuer: "ITC",
-      image: "/certificate/winner 1st place itc competition.jpeg",
+      image: "/certificate/winner 1st place itc competition.webp",
       category: "Achievement",
       date: "Sep 2024",
       credentialId: "ITC-2024",
@@ -102,7 +100,7 @@ function Certifications() {
     {
       title: "Internship Certificate - BCC Community",
       issuer: "BCC",
-      image: "/certificate/intern-bcc.jpg",
+      image: "/certificate/intern-bcc.webp",
       category: "Achievement",
       date: "Feb 2026",
       credentialId: "BCC-2026",
@@ -114,7 +112,7 @@ function Certifications() {
     {
       title: "Internship Certificate - PT Humma Teknologi",
       issuer: "Hummatech",
-      image: "/certificate/magang-hummatech.jpg",
+      image: "/certificate/magang-hummatech.webp",
       category: "Achievement",
       date: "Jun 2024",
       credentialId: "HMT-2024",
@@ -137,15 +135,9 @@ function Certifications() {
     (c) => c.category === "Achievement",
   ).length;
 
-  // Unique issuers
-  const uniqueIssuers = [...new Set(certificates.map((c) => c.issuer))];
-  // All skills
   const allSkills = [...new Set(certificates.flatMap((c) => c.skills))];
 
   useEffect(() => {
-    setAnimateIn(false);
-    const timer = setTimeout(() => setAnimateIn(true), 50);
-    
     const selectors = ['.cert-pg-hero-inner', '.cert-pg-stat-card', '.cert-pg-skills-cloud', '.cert-pg-filter-bar', '.cert-pg-card'];
     const elements = document.querySelectorAll(selectors.join(', '));
     elements.forEach(el => el.style.opacity = '0');
@@ -163,12 +155,10 @@ function Certifications() {
     elements.forEach(el => observer.observe(el));
 
     return () => {
-      clearTimeout(timer);
       elements.forEach(el => observer.unobserve(el));
     };
   }, [activeFilter]);
 
-  // Close modal on Escape
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") setSelectedCert(null);
@@ -331,7 +321,7 @@ function Certifications() {
           </div>
 
           {/* Grid: Bento-style layout */}
-          <div className={`cert-pg-grid ${animateIn ? "animate-in" : ""}`}>
+          <div className="cert-pg-grid animate-in">
             {filteredCerts.map((cert, index) => (
               <div
                 className={`cert-pg-card ${cert.category === "Achievement" ? "achievement" : ""}`}
@@ -345,6 +335,9 @@ function Certifications() {
                     src={cert.image}
                     alt={cert.title}
                     className="cert-pg-card-img"
+                    width="400"
+                    height="200"
+                    loading="lazy"
                   />
                   <div className="cert-pg-card-preview-overlay">
                     <span className="cert-pg-card-view-btn">
@@ -426,8 +419,6 @@ function Certifications() {
                       </span>
                     ))}
                   </div>
-
-                  {/* Credential ID removed as requested */}
                 </div>
               </div>
             ))}
@@ -466,6 +457,8 @@ function Certifications() {
                   src={selectedCert.image}
                   alt={selectedCert.title}
                   className="cert-pg-modal-img"
+                  width="600"
+                  height="400"
                 />
               </div>
 
@@ -513,7 +506,6 @@ function Certifications() {
                       <strong>Date:</strong> {selectedCert.date}
                     </span>
                   </div>
-                  {/* Credential ID modal item removed */}
                   <div className="cert-pg-modal-meta-item">
                     <svg
                       width="16"
@@ -554,4 +546,4 @@ function Certifications() {
   );
 }
 
-export default Certifications;
+export default Certifications;
