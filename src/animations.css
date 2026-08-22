@@ -1,14 +1,40 @@
-.fade-in-up {
-    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* Framer Motion smooth scrolling support */
+html {
+    scroll-behavior: smooth;
 }
 
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Glow Card Effect */
+.glow-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.glow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        600px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(14, 165, 233, 0.08),
+        transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::before {
+    opacity: 1;
+}
+
+/* Ensure motion divs don't break layout */
+.glow-card > * {
+    position: relative;
+    z-index: 2;
 }
