@@ -164,7 +164,7 @@ function HomePage({ projectSectionRef, projectTrackRef, certificates, projects }
           <h2 className="role">Web Developer & Data Enthusiast</h2>
       </div>
       
-      <img src="/saya.webp" alt="Arif" className="profile-image" width="600" height="600" />
+      <img src="/saya.webp" alt="Arif" className="profile-image" width="373" height="669" />
 
       <div className="hero-stats">
           <div className="stat-item">
