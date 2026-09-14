@@ -74,6 +74,24 @@ function Certifications() {
       level: "Intermediate",
     },
     {
+      title: "Introduction to Deep Learning",
+      issuer: "IBM",
+      image: "/certificate/introduction-to-deep-learning.png",
+      category: "Course",
+      date: "Aug 2026",
+      credentialId: "IBM-DL-2026",
+      skills: [
+        "Deep Learning",
+        "Neural Networks",
+        "Backpropagation",
+        "Activation Function",
+        "Vanishing Gradient",
+      ],
+      description:
+        "Explored the foundations of deep learning, including neural network architectures, backpropagation algorithms, activation functions, and techniques to address the vanishing gradient problem.",
+      level: "Intermediate",
+    },
+    {
       title: "Winner 3rd Place T-Arts Competition",
       issuer: "T-Arts",
       image: "/certificate/winner 3rd place t-arts competition-ByytJNZ-.webp",
